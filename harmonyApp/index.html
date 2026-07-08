@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-zh="专注精灵官网 - 专注高效 · 萌宠相伴" data-en="FocusElf - Stay Focused · Friendly Companion">专注精灵官网 - 专注高效 · 萌宠相伴</title>
+    <!-- 引入 Outfit 和 Inter 字体 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #070913;
+            --card-bg: rgba(15, 22, 49, 0.65);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --primary: #6366f1;
+            --primary-glow: rgba(99, 102, 241, 0.45);
+            --accent-gold: #f59e0b;
+            --accent-cyan: #06b6d4;
+            --glass-blur: blur(12px);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg-color);
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(6, 182, 212, 0.12) 0%, transparent 40%);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 统一大标题字体 */
+        h1, h2, h3, .logo-text, .btn-download {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* 导航栏 */
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .logo-icon {
+            width: 38px;
+            height: 38px;
+            background: linear-gradient(135deg, var(--primary), var(--accent-cyan));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px var(--primary-glow);
+        }
+
+        .logo-icon svg {
+            width: 22px;
+            height: 22px;
+            fill: #ffffff;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 800;
+            background: linear-gradient(to right, #ffffff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-main);
+        }
+
+        /* 顶部语言切换按钮 */
+        .lang-switch {
+            display: flex;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 2px;
+            border-radius: 20px;
+        }
+
+        .lang-switch button {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            padding: 5px 12px;
+            border-radius: 18px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+        .lang-switch button.active {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+        }
+
+        /* Hero 区域 */
+        .hero {
+            max-width: 1200px;
+            margin: 60px auto 100px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .badge-harmony {
+            align-self: flex-start;
+            background: rgba(99, 102, 241, 0.12);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            color: #a5b4fc;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .hero-title {
+            font-size: 48px;
+            font-weight: 800;
+            line-height: 1.15;
+            background: linear-gradient(135deg, #ffffff 40%, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-slogan {
+            font-size: 20px;
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .hero-desc {
+            font-size: 15px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .btn-download {
+            align-self: flex-start;
+            background: linear-gradient(135deg, var(--primary) 0%, #4f46e5 100%);
+            color: #ffffff;
+            padding: 16px 36px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 25px -5px var(--primary-glow);
+            transition: all 0.2s ease;
+            margin-top: 10px;
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px -5px rgba(99, 102, 241, 0.6);
+        }
+
+        .btn-download svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .mockup-wrapper {
+            width: 100%;
+            max-width: 520px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            padding: 10px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            backdrop-filter: var(--glass-blur);
+        }
+
+        .mockup-wrapper img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            display: block;
+        }
+
+        /* 特性展示区 */
+        .features-section {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .section-subtitle {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 24px;
+        }
+
+        .feature-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 30px 24px;
+            backdrop-filter: var(--glass-blur);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(99, 102, 241, 0.3);
+            box-shadow: 0 20px 40px -15px var(--primary-glow);
+        }
+
+        .feature-icon {
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-cyan);
+            font-size: 22px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            background: var(--primary);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        .feature-desc {
+            font-size: 13.5px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* 鸿蒙系统联动板块 */
+        .harmony-highlight {
+            max-width: 1200px;
+            margin: 100px auto;
+            padding: 60px 40px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.08) 0%, rgba(6, 182, 212, 0.03) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 32px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+        }
+
+        .highlight-info {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .highlight-title {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .highlight-desc {
+            font-size: 14.5px;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        .highlight-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        /* 系统联动模拟组件样式 */
+        .sys-widget {
+            background: rgba(13, 17, 36, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 16px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .sys-widget-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sys-widget-body {
+            flex: 1;
+        }
+
+        .sys-widget-title {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 2px;
+        }
+
+        .sys-widget-subtitle {
+            font-size: 11.5px;
+            color: var(--text-muted);
+        }
+
+        .sys-widget-badge {
+            background: rgba(6, 182, 212, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* 底部 */
+        footer {
+            border-top: 1px solid var(--card-border);
+            padding: 40px 20px;
+            margin-top: 100px;
+            background: rgba(5, 7, 18, 0.8);
+            backdrop-filter: var(--glass-blur);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 13.5px;
+            transition: color 0.2s ease;
+        }
+
+        .footer-link:hover {
+            color: var(--text-main);
+        }
+
+        .copyright {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* 动画定义 */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 响应式调整 */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+                margin-top: 20px;
+            }
+            .hero-info {
+                align-items: center;
+            }
+            .badge-harmony, .btn-download {
+                align-self: center;
+            }
+            .harmony-highlight {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding: 40px 20px;
+            }
+            .nav-links {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航栏 -->
+    <nav>
+        <a href="#" class="logo">
+            <div class="logo-icon">
+                <svg viewBox="0 0 24 24">
+                    <!-- 沙漏 SVG 图标 -->
+                    <path d="M6 2h12v6l-4 4 4 4v6H6v-6l4-4-4-4V2zm10 2H8v3.5l4 4 4-4V4zm-8 16h8v-3.5l-4-4-4 4V20z"/>
+                </svg>
+            </div>
+            <span class="logo-text">FocusElf</span>
+        </a>
+        <div class="nav-links">
+            <a href="privacy_policy.html" class="nav-link" data-zh="隐私政策" data-en="Privacy Policy">隐私政策</a>
+            <a href="user_agreement.html" class="nav-link" data-zh="用户协议" data-en="User Agreement">用户协议</a>
+            <div class="lang-switch">
+                <button id="btn-zh" class="active" onclick="toggleLanguage('zh')">中</button>
+                <button id="btn-en" onclick="toggleLanguage('en')">EN</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 首屏 -->
+    <section class="hero">
+        <div class="hero-info">
+            <span class="badge-harmony">HarmonyOS NEXT</span>
+            <h1 class="hero-title" data-zh="专注高效 · 萌宠相伴" data-en="Stay Focused with Lovely Companions">专注高效 · 萌宠相伴</h1>
+            <p class="hero-slogan" data-zh="Stay Focused · Friendly Companion" data-en="Gamified Efficiency App Built for HarmonyOS NEXT">Stay Focused · Friendly Companion</p>
+            <p class="hero-desc" data-zh="专注精灵 (FocusElf) 是一款专为鸿蒙 NEXT 打造的趣味成长型效率 App。在您开启专注时，小狗小柴等萌宠会伴随您沉浸，防止您中途放弃手机。应用内置大自然立体声白噪音，结合加速度传感器与陀螺仪传感器等硬件联动，打造极具物理交互感的科技罗盘与禅意沙漏，让时间的流逝变得治愈且充满艺术感。" data-en="FocusElf is an interactive gamified efficiency app customized for HarmonyOS NEXT. As you start focus sessions, lovely elves like Shiba will study by your side to keep you away from distractions. Integrated with professional stereo ambient noises and physical sensors (accelerometer & gyroscope), FocusElf transforms normal countdown timers into tactile sci-fi compasses and zen sandglasses. Strive for focus, collect coins, and raise your companions.">
+                专注精灵 (FocusElf) 是一款专为鸿蒙 NEXT 打造的趣味成长型效率 App。在您开启专注时，小狗小柴等萌宠会伴随您沉浸，防止您中途放弃手机。应用内置大自然立体声白噪音，结合加速度传感器与陀螺仪传感器等硬件联动，打造极具物理交互感的科技罗盘与禅意沙漏，让时间的流逝变得治愈且充满艺术感。
+            </p>
+            <a href="#" class="btn-download">
+                <svg viewBox="0 0 24 24">
+                    <!-- 鸿蒙应用市场徽标或通用下载图标 -->
+                    <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM17 13l-5 5-5-5h3V9h4v4h3z"/>
+                </svg>
+                <span data-zh="立即下载 (AppGallery)" data-en="Download on AppGallery">立即下载 (AppGallery)</span>
+            </a>
+        </div>
+        <div class="hero-visual">
+            <div class="mockup-wrapper">
+                <img src="images/hero.jpg" alt="FocusElf Visual" />
+            </div>
+        </div>
+    </section>
+
+    <!-- 特性卡片 -->
+    <section class="features-section">
+        <div class="section-header">
+            <h2 class="section-title" data-zh="不止是计时，更是一场陪伴" data-en="More Than Timers. It's a Partnership.">不止是计时，更是一场陪伴</h2>
+            <p class="section-subtitle" data-zh="通过精心融合的游戏化机制与原生鸿蒙底层体验，让您彻底告别学习工作时的心浮气躁。" data-en="Combining gamified mechanics with HarmonyOS core capability, we help you overcome procrastination effortlessly.">
+                通过精心融合的游戏化机制与原生鸿蒙底层体验，让您彻底告别学习工作时的心浮气躁。
+            </p>
+        </div>
+
+        <div class="features-grid">
+            <!-- 卡片 1 -->
+            <div class="feature-card">
+                <div class="feature-icon">🐕</div>
+                <h3 class="feature-title" data-zh="萌宠伴读，沉浸成长" data-en="Elf Companion">萌宠伴读，沉浸成长</h3>
+                <p class="feature-desc" data-zh="小柴、熊猫、橘猫在侧，伴随您每一次认真书写。专注收获“专注币”，解锁更多萌宠和精美家具装饰您的精灵阁。" data-en="Shiba, Panda, and Scholar Kitty accompany your sessions. Earn Focus Coins to unlock more pets and decorations for your pavilion.">
+                    小柴、熊猫、橘猫在侧，伴随您每一次认真书写。专注收获“专注币”，解锁更多萌宠和精美家具装饰您的精灵阁。
+                </p>
+            </div>
+            <!-- 卡片 2 -->
+            <div class="feature-card">
+                <div class="feature-icon">⏳</div>
+                <h3 class="feature-title" data-zh="陀螺沙漏，重力感应" data-en="Gravity Hourglass">陀螺沙漏，重力感应</h3>
+                <p class="feature-desc" data-zh="调用设备的加速度计与陀螺仪。物理沙漏随您的手机物理反转自动实现微粒流动交互，经典罗盘随角度平滑指向。" data-en="Harnessing gyroscope and accelerometer data. The digital sand flows physically as you tilt or flip your real phone, bringing realism to your desk.">
+                    调用设备的加速度计与陀螺仪。物理沙漏随您的手机物理反转自动实现微粒流动交互，经典罗盘随角度平滑指向。
+                </p>
+            </div>
+            <!-- 卡片 3 -->
+            <div class="feature-card">
+                <div class="feature-icon">🎧</div>
+                <h3 class="feature-title" data-zh="白噪音墙，身临其境" data-en="Stereo White Noise">白噪音墙，身临其境</h3>
+                <p class="feature-desc" data-zh="内置林间细雨、壁炉篝火、深海呼吸和意式小馆白噪音。细腻的高清音频环绕，帮您瞬间屏蔽外界嘈杂。" data-en="High-fidelity audio loops like Forest Rain, Camp Fire, and Ocean Tide. Experience instant tranquility and brain wave calming.">
+                    内置林间细雨、壁炉篝火、深海呼吸和意式小馆白噪音。细腻的高清音频环绕，帮您瞬间屏蔽外界嘈杂。
+                </p>
+            </div>
+            <!-- 卡片 4 -->
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3 class="feature-title" data-zh="沙盒统计，无损隐私" data-en="Local sandboxed Stats">沙盒统计，无损隐私</h3>
+                <p class="feature-desc" data-zh="所有专注记录、完成率、趋势完全存放在手机本地。无需登录，无网络上传，全力捍卫您的个人隐私安全。" data-en="All logs, durations, and weekly trends are stored sandboxed on your device. Free of cloud accounts, ensuring maximum privacy protection.">
+                    所有专注记录、完成率、趋势完全存存放手机本地。无需登录，无网络上传，全力捍卫您的个人隐私安全。
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 鸿蒙系统特性联动 -->
+    <section class="harmony-highlight">
+        <div class="highlight-info">
+            <span class="badge-harmony" data-zh="鸿蒙原生体验" data-en="Native HarmonyOS Features">鸿蒙原生体验</span>
+            <h2 class="highlight-title" data-zh="实况窗与卡片的系统级融入" data-en="Seamless Live View Integration">实况窗与卡片的系统级融入</h2>
+            <p class="highlight-desc" data-zh="专为 HarmonyOS NEXT 深度定制。支持桌面“专注精灵万能卡片”，不进 App 就能一键开启专注。实况窗 (Live View) 深度融合状态栏和锁定屏幕，无需解锁即可掌握剩余专注时间。精简的传感器读取与纯本地数据存储，为您带来极佳的高效原生系统级交互。" data-en="Tailored for HarmonyOS NEXT. Instantly start focus sessions via Desktop Universal Cards. The Live View integration displays remaining time seamlessly on the status bar and lock screen. Low power consumption and strict sandbox security ensure the smoothest system-level interactions.">
+                专为 HarmonyOS NEXT 深度定制。支持桌面“专注精灵万能卡片”，不进 App 就能一键开启专注。实况窗 (Live View) 深度融合状态栏和锁定屏幕，无需解锁即可掌握剩余专注时间。精简的传感器读取与纯本地数据存储，为您带来极佳的高效原生系统级交互。
+            </p>
+        </div>
+        <div class="highlight-visual">
+            <!-- 模拟桌面组件 1 -->
+            <div class="sys-widget">
+                <div class="sys-widget-icon" style="background: linear-gradient(135deg, #10b981, #059669);">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill:#fff;">
+                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                    </svg>
+                </div>
+                <div class="sys-widget-body">
+                    <div class="sys-widget-title" data-zh="实况窗 · 专注计时" data-en="Live View · Focus Session">实况窗 · 专注计时</div>
+                    <div class="sys-widget-subtitle" data-zh="精灵小柴正在认真陪伴您..." data-en="Pet Shiba is accompanying you study...">精灵小柴正在认真陪伴您...</div>
+                </div>
+                <span class="sys-widget-badge" data-zh="08:42 剩余" data-en="08:42 Left">08:42 剩余</span>
+            </div>
+            <!-- 模拟桌面组件 2 -->
+            <div class="sys-widget">
+                <div class="sys-widget-icon" style="background: linear-gradient(135deg, var(--primary), #4f46e5);">
+                    <svg viewBox="0 0 24 24" style="width: 20px; height: 20px; fill:#fff;">
+                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                    </svg>
+                </div>
+                <div class="sys-widget-body">
+                    <div class="sys-widget-title" data-zh="专注精灵 · 万能卡片" data-en="FocusElf · Desktop Widget">专注精灵 · 万能卡片</div>
+                    <div class="sys-widget-subtitle" data-zh="今天已累计专注工作 45 分钟" data-en="Focused for 45 minutes today">今天已累计专注工作 45 分钟</div>
+                </div>
+                <span class="sys-widget-badge" style="background:rgba(99,102,241,0.15); color:#a5b4fc; border-color:rgba(99,102,241,0.3);" data-zh="一键开启" data-en="Start Now">一键开启</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 底部信息 -->
+    <footer>
+        <div class="footer-content">
+            <span class="copyright" data-zh="© 2026 专注精灵 (FocusElf) · 专为 HarmonyOS NEXT 打造" data-en="© 2026 FocusElf · Tailored for HarmonyOS NEXT">© 2026 专注精灵 (FocusElf) · 专为 HarmonyOS NEXT 打造</span>
+            <div class="footer-links">
+                <a href="privacy_policy.html" class="footer-link" data-zh="隐私政策" data-en="Privacy Policy">隐私政策</a>
+                <a href="user_agreement.html" class="footer-link" data-zh="用户协议" data-en="User Agreement">用户协议</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 极简双语切换脚本 -->
+    <script>
+        function toggleLanguage(lang) {
+            const btnZh = document.getElementById('btn-zh');
+            const btnEn = document.getElementById('btn-en');
+            
+            if (lang === 'zh') {
+                btnZh.classList.add('active');
+                btnEn.classList.remove('active');
+                document.documentElement.lang = 'zh-CN';
+                
+                // 替换所有带有 data-zh 属性的文本
+                document.querySelectorAll('[data-zh]').forEach(el => {
+                    if (el.tagName === 'TITLE') {
+                        document.title = el.getAttribute('data-zh');
+                    } else {
+                        el.textContent = el.getAttribute('data-zh');
+                    }
+                });
+            } else {
+                btnZh.classList.remove('active');
+                btnEn.classList.add('active');
+                document.documentElement.lang = 'en';
+                
+                // 替换所有带有 data-en 属性的文本
+                document.querySelectorAll('[data-en]').forEach(el => {
+                    if (el.tagName === 'TITLE') {
+                        document.title = el.getAttribute('data-en');
+                    } else {
+                        el.textContent = el.getAttribute('data-en');
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+</html>
