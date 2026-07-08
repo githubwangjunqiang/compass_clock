@@ -50,6 +50,32 @@
             margin: 0 auto;
         }
 
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 16px;
+            gap: 8px;
+        }
+
+        .lang-switch button {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.2s ease;
+        }
+
+        .lang-switch button.active {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
         .card {
             background-color: var(--card-color);
             border: 1px solid var(--border-color);
@@ -81,16 +107,17 @@
             gap: 16px;
         }
 
-        .meta span {
-            display: inline-flex;
-            align-items: center;
-        }
-
         .lead {
             font-size: 15px;
             color: var(--text-muted);
             margin-bottom: 24px;
             text-indent: 2em;
+        }
+
+        /* 英文缩进微调 */
+        #content-en .lead {
+            text-indent: 0;
+            margin-bottom: 24px;
         }
 
         h2 {
@@ -102,6 +129,13 @@
             border-left: 4px solid var(--primary);
             display: flex;
             align-items: center;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 18px 0 8px;
+            color: var(--text-main);
         }
 
         p {
@@ -133,6 +167,7 @@
             font-weight: 600;
             color: var(--primary);
             margin-bottom: 6px;
+            margin-top: 0;
         }
 
         .highlight-box p {
@@ -191,7 +226,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="card">
+        <!-- 语言切换按钮 -->
+        <div class="lang-switch">
+            <button id="btn-zh" class="active" onclick="switchLang('zh')">中文</button>
+            <button id="btn-en" onclick="switchLang('en')">English</button>
+        </div>
+
+        <!-- 中文版内容 -->
+        <div id="content-zh" class="card">
             <header>
                 <h1>隐私政策</h1>
                 <div class="meta">
@@ -206,7 +248,7 @@
 
             <div class="highlight-box">
                 <h3>特别提示</h3>
-                <p>在使用本应用前，请您务必仔细阅读并理解本《隐私政策》。一旦您点击“同意并继续”并开始使用本应用，即表示您已充分理解并同意本政策的全部内容。<strong>本应用秉持“极简收集”原则，大部分功能均在本地运行，我们不会将您的传感器数据或历史专注数据上传到任何服务器。</strong></p>
+                <p>在使用本应用前，请您务必仔细阅读并理解本《隐私政策》。一旦您点击“同意并继续”并开始使用本应用，即表示您已充分理解并同意本政策 of 的全部内容。<strong>本应用秉持“极简收集”原则，大部分功能均在本地运行，我们不会将您的传感器数据或历史专注数据上传到任何服务器。</strong></p>
             </div>
 
             <h2>一、我们如何收集和使用您的信息</h2>
@@ -302,9 +344,149 @@
             </p>
             <p>一般情况下，我们将在收到您的问题并核实您身份后的 15 个工作日内予以回复和处理。</p>
         </div>
+
+        <!-- 英文版内容 -->
+        <div id="content-en" class="card" style="display: none;">
+            <header>
+                <h1>Privacy Policy</h1>
+                <div class="meta">
+                    <span>Last Updated: July 8, 2026</span>
+                    <span>Effective Date: July 8, 2026</span>
+                </div>
+            </header>
+
+            <p class="lead">
+                <strong>FocusElf</strong> (hereinafter referred to as "the Application") is a HarmonyOS application (Package Name: <code>com.xp.app.compassapp</code>) developed and operated by <strong>FocusElf Personal Developer</strong> (hereinafter referred to as "we", "us", or "our") to help users improve focus and productivity. We take your privacy and personal data security very seriously. This Privacy Policy outlines how we collect, use, store, and protect your information, as well as the rights you hold.
+            </p>
+
+            <div class="highlight-box">
+                <h3>Special Notice</h3>
+                <p>Before using the Application, please read and understand this Privacy Policy thoroughly. By clicking "Agree and Continue" and starting to use the Application, you fully understand and agree to the entire contents of this policy. <strong>Adhering to the "minimal collection" principle, most of our functions run purely offline, and we never upload your sensor data or focus history to any server.</strong></p>
+            </div>
+
+            <h2>1. How We Collect and Use Your Information</h2>
+            <p>To ensure the operation of the Application and provide core features (including focus timer, companion pets, dynamic compass, and physics-based hourglass), we collect and use certain non-sensitive data under specific scenarios:</p>
+            
+            <h3>1.1 Device Sensor Data</h3>
+            <p>To implement real-time physical interactive effects in the "Compass Theme" and "Hourglass Theme" (e.g., sand falling according to rotation or compass dial pointing), we access your device sensors in real-time when using these themes:</p>
+            <ul>
+                <li><span class="accent-text">Accelerometer Sensor</span>: Detects the tilt direction and movement status of the device to trigger sandbox physical interactions.</li>
+                <li><span class="accent-text">Gyroscope Sensor</span>: Measures the angular rotation speed of the device to achieve smooth rotation of the compass dial.</li>
+            </ul>
+            <p><strong>Security Claim:</strong> The sensor data listed above is only processed locally in real-time to render graphics and animations. <span class="accent-text">We do not store this data locally, nor do we upload it to any internet server.</span></p>
+
+            <h3>1.2 Locally Stored Data</h3>
+            <p>To record your focus progress, save preferences, and support offline usage, we store the following data in your local device sandboxed storage:</p>
+            <ul>
+                <li><strong>Focus Statistics Logs</strong>: Total focus duration, completion rate, session count, and detailed time/status of each session.</li>
+                <li><strong>Pet Progression Data</strong>: Unlocked companion pets (e.g., Focus Shiba, Zen Panda, Ginger Scholar) and cumulative "Focus Coins".</li>
+                <li><strong>User Preferences</strong>: Selected background noises (e.g., Forest Rain, Camp Fire), volume settings, and customized theme skins.</li>
+            </ul>
+
+            <h3>1.3 Network Access</h3>
+            <p>The Application requests internet permission in order to execute necessary basic app interactions or load static policy webpages when network is available. We do not upload your local focus logs or pet data.</p>
+
+            <h2>2. System Permissions We Request</h2>
+            <p>To provide the services mentioned above, the Application requests the following permissions from the HarmonyOS system. We only request them when you use corresponding features, and use them solely for declared purposes:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Permission Name</th>
+                        <th>Identifier</th>
+                        <th>Purpose & Scenario</th>
+                        <th>Can Reject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Accelerometer</strong></td>
+                        <td><code>ohos.permission.ACCELEROMETER</code></td>
+                        <td>Senses tilt and gravity changes for hourglass sand movements and compass responsiveness.</td>
+                        <td>Yes (Rejection disables gravity physics but doesn't affect standard timers)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gyroscope</strong></td>
+                        <td><code>ohos.permission.GYROSCOPE</code></td>
+                        <td>Monitors device rotation angle for smooth compass rotation and custom gyroscope themes.</td>
+                        <td>Yes (Rejection changes rotations to static animations but doesn't affect standard timers)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Internet Access</strong></td>
+                        <td><code>ohos.permission.INTERNET</code></td>
+                        <td>Allows network access to check for app updates and load legal agreement webpages.</td>
+                        <td>Yes (Rejection disables online update checks but core offline features remain functional)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2>3. How We Store and Protect Your Information</h2>
+            <ol>
+                <li><strong>Storage Location</strong>: All focus data, pet growth progress, and user preferences generated in the Application <span class="accent-text">are stored solely on your local device</span> (via sandbox storage). We do not provide cloud backup services; therefore, we do not collect, transmit, or store this data on our servers.</li>
+                <li><strong>Retention Period</strong>: Local data remains on your device until you uninstall the Application or clear its storage in system settings.</li>
+                <li><strong>Security Measures</strong>: We leverage HarmonyOS bottom-layer sandbox mechanisms to isolate app data, preventing unauthorized apps from accessing your local database.</li>
+            </ol>
+
+            <h2>4. How We Share, Transfer, or Disclose Your Information</h2>
+            <p>We guarantee your data confidentiality:</p>
+            <ul>
+                <li>We <strong>do not</strong> share your personal data with any third-party company, organization, or individual.</li>
+                <li>The Application currently <strong>does not integrate any third-party SDKs</strong>. No partners collect information in our app.</li>
+                <li>We will not transfer or disclose your data unless required by laws, regulations, or mandatory requests from government authorities.</li>
+            </ul>
+
+            <h2>5. Your Rights</h2>
+            <p>In accordance with relevant PRC data protection laws and HarmonyOS ecosystem requirements, we guarantee your rights to manage your personal information:</p>
+            <ol>
+                <li><strong>Manage Local Data</strong>: Since data is stored locally, you can clear app storage or uninstall the Application to delete all records.</li>
+                <li><strong>Withdraw Consent & Reset</strong>: You can revoke your authorization to this privacy policy anytime by tapping <span class="accent-text">[Settings] -> [Reset Privacy Authorization]</span> inside the app. Once triggered, the app clears the authorization cache and exits. The dialog will prompt again when you launch the app next time.</li>
+                <li><strong>Account Cancellation</strong>: Since we do not collect account credentials or hold cloud data, you do not need complex cancellation steps. Uninstalling the app completely serves as service termination.</li>
+            </ol>
+
+            <h2>6. Protection of Minors</h2>
+            <p>Our product is designed for users to boost learning efficiency. We attach great importance to the protection of minors' personal data. If you are under 14, please obtain prior consent from your parents or legal guardians. Due to offline processing, we cannot verify age, but we promise not to collect or distribute minors' data.</p>
+
+            <h2>7. Updates to This Policy</h2>
+            <p>We may update this Privacy Policy to reflect app revisions or legislative changes. When updates occur, we will notify you through pop-ups or update notifications. The new version takes effect after you grant consent.</p>
+
+            <h2>8. Contact Us</h2>
+            <p>If you have questions, complaints, or suggestions regarding this Privacy Policy or personal data protection, feel free to contact us:</p>
+            <p>
+                Developer: <span class="accent-text">FocusElf Personal Developer</span><br>
+                Email: <span class="accent-text">980766134@qq.com</span>
+            </p>
+            <p>Generally, we will verify your identity and reply to your queries within 15 business days.</p>
+        </div>
+
         <footer>
-            <p>© 2026 专注精灵 版权所有</p>
+            <p>© 2026 FocusElf. All Rights Reserved.</p>
         </footer>
     </div>
+
+    <!-- JS 逻辑控制语言切换 -->
+    <script>
+        function switchLang(lang) {
+            const zh = document.getElementById('content-zh');
+            const en = document.getElementById('content-en');
+            const btnZh = document.getElementById('btn-zh');
+            const btnEn = document.getElementById('btn-en');
+            
+            if (lang === 'zh') {
+                zh.style.display = 'block';
+                en.style.display = 'none';
+                btnZh.classList.add('active');
+                btnEn.classList.remove('active');
+                document.title = "隐私政策 - 专注精灵";
+                document.documentElement.lang = "zh-CN";
+            } else {
+                zh.style.display = 'none';
+                en.style.display = 'block';
+                btnZh.classList.remove('active');
+                btnEn.classList.add('active');
+                document.title = "Privacy Policy - FocusElf";
+                document.documentElement.lang = "en";
+            }
+        }
+    </script>
 </body>
 </html>

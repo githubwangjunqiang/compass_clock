@@ -49,6 +49,32 @@
             margin: 0 auto;
         }
 
+        .lang-switch {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 16px;
+            gap: 8px;
+        }
+
+        .lang-switch button {
+            background-color: var(--card-color);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 6px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 13px;
+            font-weight: 600;
+            box-shadow: 0 2px 4px var(--shadow-color);
+            transition: all 0.2s ease;
+        }
+
+        .lang-switch button.active {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: #ffffff;
+        }
+
         .card {
             background-color: var(--card-color);
             border: 1px solid var(--border-color);
@@ -87,6 +113,12 @@
             text-indent: 2em;
         }
 
+        /* 英文缩进微调 */
+        #content-en .lead {
+            text-indent: 0;
+            margin-bottom: 24px;
+        }
+
         h2 {
             font-size: 18px;
             font-weight: 600;
@@ -96,6 +128,13 @@
             border-left: 4px solid var(--primary);
             display: flex;
             align-items: center;
+        }
+
+        h3 {
+            font-size: 15px;
+            font-weight: 600;
+            margin: 18px 0 8px;
+            color: var(--text-main);
         }
 
         p {
@@ -127,6 +166,7 @@
             font-weight: 600;
             color: var(--primary);
             margin-bottom: 6px;
+            margin-top: 0;
         }
 
         .highlight-box p {
@@ -166,7 +206,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="card">
+        <!-- 语言切换按钮 -->
+        <div class="lang-switch">
+            <button id="btn-zh" class="active" onclick="switchLang('zh')">中文</button>
+            <button id="btn-en" onclick="switchLang('en')">English</button>
+        </div>
+
+        <!-- 中文版内容 -->
+        <div id="content-zh" class="card">
             <header>
                 <h1>用户协议</h1>
                 <div class="meta">
@@ -205,7 +252,7 @@
             </ul>
 
             <h2>三、用户个人信息保护</h2>
-            <p>我们非常重视对您隐私的保护。我们建立了一套严密的机制来确保您的信息安全。您在使用本应用时，我们收集、使用和保护您个人信息的方式，请详细阅读我们的《隐私政策》，《隐私政策》与本协议具有同等的法律效力。</p>
+            <p>We 非常重视对您隐私的保护。我们建立了一套严密的机制来确保您的信息安全。您在使用本应用时，我们收集、使用和保护您个人信息的方式，请详细阅读我们的《隐私政策》，《隐私政策》与本协议具有同等的法律效力。</p>
 
             <h2>四、本地数据安全与责任</h2>
             <p>1. <strong>数据纯本地运行</strong>：本应用是一款注重隐私保护的离线单机化体验为主的软件。您的所有历史专注记录、专注币余额、解锁宠物图鉴等均<span class="accent-text">保存在您的设备本地沙盒中</span>。</p>
@@ -240,9 +287,112 @@
             </p>
             <p>在收到您的联系信息后，我们将尽快在 15 个工作日内予以处理与回复。</p>
         </div>
+
+        <!-- 英文版内容 -->
+        <div id="content-en" class="card" style="display: none;">
+            <header>
+                <h1>User Agreement</h1>
+                <div class="meta">
+                    <span>Last Updated: July 8, 2026</span>
+                    <span>Effective Date: July 8, 2026</span>
+                </div>
+            </header>
+
+            <p class="lead">
+                Welcome to <strong>FocusElf</strong>! Before starting your journey, please read this User Agreement (hereinafter referred to as "this Agreement") carefully. This Agreement is a legally binding contract between you (hereinafter referred to as the "User") and <strong>FocusElf Personal Developer</strong> (hereinafter referred to as "we", "us", or "our") regarding your download, installation, and use of the "FocusElf" mobile application (Package Name: <code>com.xp.app.compassapp</code>).
+            </p>
+
+            <div class="highlight-box">
+                <h3>Special Notice</h3>
+                <p>Please read and understand all terms carefully, especially those regarding liability limitation, governing law, and dispute resolution. <strong>If you are under 18, please read this Agreement in the company of your legal guardian.</strong> By agreeing or using our services, you acknowledge that you have read, understood, and accepted all terms herein.</p>
+            </div>
+
+            <h2>1. Services Provided</h2>
+            <p>1.1 The Application is a productivity utility running on the HarmonyOS NEXT platform. We provide the following core features:</p>
+            <ul>
+                <li><strong>Focus Timer</strong>: Custom study/work countdowns accompanied by natural ambient white noises (Forest Rain, Camp Fire, etc.).</li>
+                <li><strong>Elf Companion & Progression</strong>: Virtual pets study with you in real-time. Successful sessions award "Focus Coins" to unlock additional elves in the collection.</li>
+                <li><strong>Local Statistics</strong>: Generates charts displaying focus durations, completion rates, and weekly study trends.</li>
+                <li><strong>Interactive Widgets & Themes</strong>: Dynamic themes (e.g., Classic Compass, Physics Hourglass) using accelerometer and gyroscope inputs for unique physical responses.</li>
+            </ul>
+            <p>1.2 The Application is currently free of charge. We reserve the rights to modify, suspend, or terminate parts of the features or services at our discretion.</p>
+
+            <h2>2. User Guidelines & Software License</h2>
+            <p>2.1 <strong>License Grant</strong>: We grant you a personal, non-transferable, non-exclusive, revocable, and non-commercial license to run the Application on compatible HarmonyOS devices.</p>
+            <p>2.2 <strong>Usage Restrictions</strong>: Unless legally permitted or explicitly authorized in writing, you shall not:</p>
+            <ul>
+                <li>Decompile, reverse engineer, disassemble, or attempt to reconstruct the source code of the Application;</li>
+                <li>Copy, modify, or create derivative works, including using plug-ins, cheats, or unauthorized third-party tools to access the Application;</li>
+                <li>Use the Application to transmit, publish, or store content that violates local laws and regulations, is offensive, violent, or infringes on others' rights;</li>
+                <li>Cheating or exploiting mechanisms to gain unauthorized "Focus Coins" which ruins the intended gamified experience.</li>
+            </ul>
+
+            <h2>3. Privacy & Personal Data Protection</h2>
+            <p>We respect your privacy. All details regarding how we collect, use, and safeguard your data are defined in our 《Privacy Policy》. The Privacy Policy holds the same legal validity as this Agreement.</p>
+
+            <h2>4. Sandboxed Data & User Responsibility</h2>
+            <p>4.1 <strong>Purely Offline Mechanism</strong>: This Application is built with privacy-first offline features. Your focus history, pet collection progress, and focus coins are <span class="accent-text">only stored locally in your device sandbox</span>.</p>
+            <p>4.2 <strong>Data Loss Risk</strong>: Since data does not sync to any cloud server:</p>
+            <ul>
+                <li><span class="accent-text">Uninstalling the Application, clearing application cache, resetting device settings, or severe device damage will result in permanent loss of your focus logs and pets.</span></li>
+                <li>You acknowledge and accept this risk of data loss. We do not hold liability or have the technical means to restore locally lost data.</li>
+            </ul>
+
+            <h2>5. Intellectual Property Rights</h2>
+            <p>5.1 We own all intellectual property rights of the Application. All code, layouts, UI designs, pet graphical assets (Focus Shiba, Zen Panda, Ginger Scholar), and audio materials are protected by intellectual property laws and copyright treaties.</p>
+            <p>5.2 You are not authorized to reuse, transfer, copy, or redistribute any of our copyrighted assets without our explicit written consent.</p>
+
+            <h2>6. Liability Disclaimers</h2>
+            <p>6.1 <strong>Information Accuracy</strong>: Dial coordinates, compass angles, and altitudes (if shown) are fetched directly from device sensors. <span class="accent-text">They are subject to electromagnetic interference and sensor quality, and are strictly for entertainment/reference only. Do not rely on them for professional navigation, rescue operations, or hazardous environments.</span> We bear no liability for outcomes resulting from relying on these readings.</p>
+            <p>6.2 <strong>Device Compatibility</strong>: We strive for app stability, but do not warrant compatibility with all hardware models or HarmonyOS versions. We are not liable for crashes or database corruptions due to system bugs.</p>
+            <p>6.3 <strong>Force Majeure</strong>: We are not liable for service suspensions or data loss caused by network failures, cyberattacks, system maintenance, earthquakes, floods, or other force majeure events.</p>
+
+            <h2>7. Amendments & Termination</h2>
+            <p>7.1 <strong>Amendments</strong>: We reserve the right to revise this Agreement to comply with new regulations or feature updates. Once published, the updated version takes effect. Continuing to use the Application constitutes your acceptance.</p>
+            <p>7.2 <strong>Termination</strong>: We reserve the right to suspend or block your access to the Application if you breach any terms of this Agreement, without prior notice or liability.</p>
+
+            <h2>8. Governing Law & Jurisdiction</h2>
+            <p>8.1 This Agreement shall be governed by and construed in accordance with the laws of the People's Republic of China.</p>
+            <p>8.2 <strong>Dispute Resolution</strong>: Any disputes arising from this Agreement shall be resolved through friendly negotiations. If negotiations fail, <span class="accent-text">either party has the right to submit the dispute to the People's Court with jurisdiction in Tongzhou District, Beijing (our residency place)</span>.</p>
+
+            <h2>9. Contact Us</h2>
+            <p>If you have any questions, suggestions, or complaints regarding this Agreement, please contact us at:</p>
+            <p>
+                Developer: <span class="accent-text">FocusElf Personal Developer</span><br>
+                Email: <span class="accent-text">980766134@qq.com</span>
+            </p>
+            <p>We will review your inquiry and reply within 15 business days.</p>
+        </div>
+
         <footer>
-            <p>© 2026 专注精灵 版权所有</p>
+            <p>© 2026 FocusElf. All Rights Reserved.</p>
         </footer>
     </div>
+
+    <!-- JS 逻辑控制语言切换 -->
+    <script>
+        function switchLang(lang) {
+            const zh = document.getElementById('content-zh');
+            const en = document.getElementById('content-en');
+            const btnZh = document.getElementById('btn-zh');
+            const btnEn = document.getElementById('btn-en');
+            
+            if (lang === 'zh') {
+                zh.style.display = 'block';
+                en.style.display = 'none';
+                btnZh.classList.add('active');
+                btnEn.classList.remove('active');
+                document.title = "用户协议 - 专注精灵";
+                document.documentElement.lang = "zh-CN";
+            } else {
+                zh.style.display = 'none';
+                en.style.display = 'block';
+                btnZh.classList.remove('active');
+                btnEn.classList.add('active');
+                document.title = "User Agreement - FocusElf";
+                document.documentElement.lang = "en";
+            }
+        }
+    </script>
 </body>
 </html>
